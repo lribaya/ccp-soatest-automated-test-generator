@@ -29,6 +29,9 @@ This Python script automates the creation and configuration of a tst based on a 
 
 4. **Template File**:
    - A template tst file (i.e. `CCPPlan_template_Coke.tst`) is used as the base for creating the final tst.
+  
+5. **addAuthentication.tst**:
+   - The 'addAuthentication.tst' holds the OAuth 2.0 profile to be used for the REST Clients. It must be imported into the /TestAssets folder.
 
 ## How It Works
 
