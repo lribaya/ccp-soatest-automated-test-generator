@@ -79,7 +79,6 @@ This Python script automates the creation and configuration of a tst based on a 
 
 ## Notes
 
-- The script includes logging for debugging purposes. You can adjust the logging level in the `logging.basicConfig` configuration.
 - Ensure the API server is running and accessible before executing the script.
 - The script assumes specific column names in the CSV file (e.g., `Operation`, `DatValSQL`, `DataCountSQL`, etc.). Ensure your CSV file matches these expectations.
 
