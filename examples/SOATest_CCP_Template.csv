@@ -1,0 +1,21 @@
+Method,Base,Operation,IDPathParameter,Operation2,QPOffset-ResponseCode500,QPSort-ResponseCode400,URL,Error500URL,Error400URL,DatValSQL,DataCountSQL
+GET,https://api.nprd.ccbcc.com/ccpplan-qa,/brand-markets,,,?offset=5645,?limit=908746,https://api.nprd.ccbcc.com/ccpplan-qa/brand-markets,https://api.nprd.ccbcc.com/ccpplan-qa/brand-markets?offset=5645,https://api.nprd.ccbcc.com/ccpplan-qa/brand-markets?limit=908746,"SELECT [RecordID] as id,[BMAID] as code,[BrandMarketAllocatorDescription] as description,CreatedDate as createdDate,UpdatedDate as updatedDate,case when Deleted='0' then 'false' else 'true' end as deleted,CreatedBy as createdBy,UpdatedBy as updatedBy FROM [CONATenantData].[v_BrandMarket]",Select count (*)  FROM [CONATenantData].[v_BrandMarket];
+GET,https://api.nprd.ccbcc.com/ccpplan-qa,/equipment-types,,,?offset=5645,?limit=908746,https://api.nprd.ccbcc.com/ccpplan-qa/equipment-types,https://api.nprd.ccbcc.com/ccpplan-qa/equipment-types?offset=5645,https://api.nprd.ccbcc.com/ccpplan-qa/equipment-types?limit=908746,"SELECT [RecordID] as id,[EquipmentTypeDesc] as description,[ElementTypeID] as elementTypeId,ISNULL(CAST(ImageURL AS VARCHAR(MAX)), 'null') AS imageURL,CreatedDate as createdDate,UpdatedDate as updatedDate,case when Deleted='0' then 'false' else 'true' end as deleted,CreatedBy as createdBy,UpdatedBy as updatedBy
+FROM [CONATenantData].[v_EquipmentType] WHERE Deleted = 0",Select count (*)  FROM [CONATenantData].[v_EquipmentType] WHERE Deleted = 0;
+GET,https://api.nprd.ccbcc.com/ccpplan-qa,/element-types,,,?offset=5645,?limit=908746,https://api.nprd.ccbcc.com/ccpplan-qa/element-types,https://api.nprd.ccbcc.com/ccpplan-qa/element-types?offset=5645,https://api.nprd.ccbcc.com/ccpplan-qa/element-types?limit=908746,"SELECT [RecordID] as id,[ElementTypeDesc] as description,CreatedDate as createdDate,UpdatedDate as updatedDate,case when Deleted='0' then 'false' else 'true' end as deleted,CreatedBy as createdBy,UpdatedBy as updatedBy FROM [CONATenantData].[v_ElementType];",Select count (*) FROM [CONATenantData].[v_ElementType] where Deleted = 0;
+GET,https://api.nprd.ccbcc.com/ccpplan-qa,/funding-types,,,?offset=5645,?limit=908746,https://api.nprd.ccbcc.com/ccpplan-qa/funding-types,https://api.nprd.ccbcc.com/ccpplan-qa/funding-types?offset=5645,https://api.nprd.ccbcc.com/ccpplan-qa/funding-types?limit=908746,"Select RecordID as id,[FundingTypeCode] as code,[FundingTypeDesc] as description,CreatedDate as createdDate,UpdatedDate as updatedDate,case when Deleted='0' then 'false' else 'true' end as deleted,CreatedBy as createdBy,UpdatedBy as updatedBy from  [CONATenantData].[v_FundingType];",Select Count (*)  from  [CONATenantData].[v_FundingType] where Deleted = 0;
+GET,https://api.nprd.ccbcc.com/ccpplan-qa,/plans,/101,/free-goods,?offset=5645,?limit=908746,https://api.nprd.ccbcc.com/ccpplan-qa/plans/101/free-goods,https://api.nprd.ccbcc.com/ccpplan-qa/plans/101/free-goods?offset=5645,https://api.nprd.ccbcc.com/ccpplan-qa/plans/101/free-goods?limit=908746,"Select [Plan].[v_FundingFreeGoods].RecordID as id
+,[Plan].[v_FundingFreeGoods].PlanID as planId
+,[Plan].[v_FundingFreeGoods].FundingPackageID as fundingPackageId
+,[Plan].[v_FundingFreeGoods].FundingStateID as fundingStateId
+,[Plan].[v_FundingFreeGoods].FundingFrequencyID as fundingFrequencyId
+,IsNull(Cast([Plan].[v_FundingFreeGoods].CurrentQuantity As varchar(10)), 'null') as currentQuantity 
+,IsNull(Cast([Plan].[v_FundingFreeGoods].ApprovalQuantity As varchar(10)), 'null') as approvalQuantity
+,IsNull(Cast([Plan].[v_FundingFreeGoods].PlannedQuantity As varchar(10)), 'null') as plannedQuantity
+,IsNull(Cast([Plan].[v_FundingFreeGoods].SoldQuantity As varchar(10)), 'null') as soldQuantity
+,Convert(nvarchar(255), [Plan].[v_FundingFreeGoods].CreatedDate,126) as createdDate
+,Convert(nvarchar(255), [Plan].[v_FundingFreeGoods].UpdatedDate,126) as updatedDate
+,case when [Plan].[v_FundingFreeGoods].Deleted='0' then 'false' else 'true' end as deleted
+,[Plan].[v_FundingFreeGoods].CreatedBy as createdBy
+,[Plan].[v_FundingFreeGoods].UpdatedBy as updatedBy
+From [Plan].[v_FundingFreeGoods] Where [v_FundingFreeGoods].PlanID = '101';",Select count(*) From [Plan].[v_FundingFreeGoods] Where [v_FundingFreeGoods].PlanID = '101';
