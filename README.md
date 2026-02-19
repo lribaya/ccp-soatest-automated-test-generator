@@ -43,9 +43,6 @@ This Python script automates the creation and configuration of a tst based on a 
      - **RecordCount Scenario**: Updates SQL queries for record count validation. Also updates the request URLs of the REST Client.
      - **REST Clients**: Updates REST client configurations for various response codes and SLA checks.
 
-6. **Final Copy**:
-   - The script copies the final test suite (`concurrent_final.tst`) to another location (`addAuthentication.tst`) for further use.
-
 ## Configuration
 
 - **CSV File Path**:
@@ -94,3 +91,4 @@ This script is tailored for a specific tst template and may require modification
    python -m pip install requests
 
    ```
+
