@@ -156,11 +156,3 @@ for row in csv_data:
 
             rest_data["resource"]["literalText"]["fixed"] = row["Base"] + row["Operation"]
             requests.put(rest_client_url, json=rest_data)
-
-# Last step : POST request to copy test suite from addAuthentication.tst
-copy_url = f"{BASE_URL}/suites/copy"
-copy_payload = {
-    "from": {"id": f"TestAssets/{NEW_FILE}/Test Suite"},
-    "to": {"parent": {"id": f"TestAssets/addAuthentication.tst/Test Suite"}}
-}
-response = requests.post(copy_url, json=copy_payload)
