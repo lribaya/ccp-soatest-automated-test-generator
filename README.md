@@ -6,13 +6,27 @@ This Python script automates the creation and configuration of a tst based on a 
 
 ## Prerequisites
 
+### Install Python and dependencies (Windows)
+
+1. Install Python 3:
+   - Download from https://www.python.org/downloads/
+   - During installation, check "Add Python to PATH".
+2. Verify installation in PowerShell:
+   ```powershell
+   python --version
+   ```
+3. Install required libraries:
+   ```powershell
+   python -m pip install requests
+   ```
+
 1. **Python Libraries**:
    - `requests`: For making HTTP requests to the REST API.
    - `json`: For handling JSON data.
    - `csv`: For reading data from the input CSV file.
 
 2. **Input Files**:
-   - A CSV file containing data to configure the test suite names, the queries for each DB Tool, and the request URLs for each REST Client. The file path is specified by `--CSV_FILE_PATH` (defaults to `C:\SOATest_CCP_Template.csv`).
+   - A CSV file containing data to configure the test suite names, the queries for each DB Tool, and the request URLs for each REST Client. Provide the file path with `--CSV_FILE_PATH`.
 
 3. **API Endpoint**:
    - The script interacts with a REST API hosted at `http://localhost:9080/soavirt/api/v6`. Ensure the SOAtest Server is running and accessible.
@@ -46,10 +60,10 @@ This Python script automates the creation and configuration of a tst based on a 
 ## Configuration
 
 - **CSV File Path**:
-   - Provide `--CSV_FILE_PATH` when running the script, or rely on the default path (`C:\SOATest_CCP_Template.csv`).
+   - Provide `--CSV_FILE_PATH` when running the script.
 
 - **API Base URL**:
-   - Provide `--API_BASE_URL` if the API is hosted at a different location.
+   - Defaults to `http://localhost:9080/soavirt/api/v6`. Provide `--API_BASE_URL` if the API is hosted at a different location.
 
 - **Template and New File Names**:
    - Provide `--TEMPLATE_FILE` and `--NEW_FILE` to override defaults.
@@ -76,19 +90,3 @@ This Python script automates the creation and configuration of a tst based on a 
 ## Disclaimer
 
 This script is tailored for a specific tst template and may require modifications to work with other tst templates. Use it as a reference or starting point for automating test creation for other use cases.
-
-## Install Python and dependencies (Windows)
-
-1. Install Python 3:
-   - Download from https://www.python.org/downloads/
-   - During installation, check "Add Python to PATH".
-2. Verify installation in PowerShell:
-   ```powershell
-   python --version
-   ```
-3. Install required libraries:
-   ```powershell
-   python -m pip install requests
-
-   ```
-
