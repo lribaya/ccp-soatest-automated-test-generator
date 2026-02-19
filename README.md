@@ -4,16 +4,6 @@
 
 This Python script automates the creation and configuration of a tst based on a template tst and CSV file. It interacts with the SOAtest REST API to perform various operations, such as creating a new tst file, copying test suites from a template (i.e. CCPPlan_template), modifying test suite properties, and updating test tools based on data from a CSV file. The script is designed to streamline the process of generating and configuring test suites for each operation listed in the CSV file.
 
-## Features
-
-- **Create New Test Files**: The script uses a POST request to create a new test file on the server.
-- **Set Execution Options**: Configures the test suite to run test suites concurrently.
-- **Copy Test Suites**: Copies test suites from a template file to a new file.
-- **Modify Test Suite Properties**: Updates the name and other properties of copied test suites based on data from a CSV file.
-- **Update Test Tools**: Modifies DB Tools and REST Clients within the test suites to reflect data from the CSV file.
-- **Handle Nested Test Suite Relationships**: Iterates through child test suites and updates their properties based on specific conditions.
-- **Final Test Suite Copy**: Copies the final test suite to another location to add an OAuth 2.0 authentication profile that can be applied to the REST Clients
-
 ## Prerequisites
 
 1. **Python Libraries**:
@@ -102,4 +92,5 @@ This script is tailored for a specific tst template and may require modification
 3. Install required libraries:
    ```powershell
    python -m pip install requests
+
    ```
