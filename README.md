@@ -32,7 +32,7 @@ This Python script automates the creation and configuration of a tst based on a 
    - The script interacts with a REST API hosted at `http://localhost:9080/soavirt/api/v6`. Ensure the SOAtest Server is running and accessible.
 
 4. **Template File**:
-   - A template tst file (i.e. `CCPPlan_template_Coke.tst`) is used as the base for creating the final tst.
+   - A template tst file (i.e. `CCPPlan_template.tst`) is used as the base for creating the final tst.
 
 ## How It Works
 
@@ -40,7 +40,7 @@ This Python script automates the creation and configuration of a tst based on a 
    - The script reads data from the specified CSV file. Each row in the CSV file corresponds to a test suite configuration.
 
 2. **Create a New Test File**:
-   - A POST request is sent to the API to create a new test file (`concurrent_final.tst`).
+   - A POST request is sent to the API to create a new test file (`CCPPlan_generated.tst`).
 
 3. **Set Execution Options**:
    - The script configures the top-most test suite to run tests concurrently using a PUT request in order to optimize test execution time.
@@ -53,7 +53,7 @@ This Python script automates the creation and configuration of a tst based on a 
 
 5. **Handle Specific Test Tools**:
    - The script identifies and updates specific tools within the test suites:
-     - **DataValidation Scenario**: Updates SQL queries and removes unnecessary data sources that is introduced by the API. Also updates the request URLs of the REST Client.
+     - **DataValidation Scenario**: Updates SQL queries for data validation. Also updates the request URLs of the REST Client.
      - **RecordCount Scenario**: Updates SQL queries for record count validation. Also updates the request URLs of the REST Client.
      - **REST Clients**: Updates REST client configurations for various response codes and SLA checks.
 
@@ -90,4 +90,5 @@ This Python script automates the creation and configuration of a tst based on a 
 ## Disclaimer
 
 This script is tailored for a specific tst template and may require modifications to work with other tst templates. Use it as a reference or starting point for automating test creation for other use cases.
+
 
