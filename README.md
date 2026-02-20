@@ -73,11 +73,11 @@ This Python script automates the creation and configuration of a tst based on a 
 1. Ensure all prerequisites are met.
 2. Run the script using Python (PowerShell example):
    ```powershell
-   python test_generator_ccp.py --TEMPLATE_FILE CCPPlan_template_Coke.tst --NEW_FILE CCPPlan.tst --CSV_FILE_PATH "C:\SOATest_CCP_Template.csv" --API_BASE_URL "http://localhost:9080/soavirt/api/v6"
+   python test_generator_ccp.py --TEMPLATE_FILE CCPPlan_template.tst --NEW_FILE CCPPlan_generated.tst --CSV_FILE_PATH "C:\SOATest_CCP_Template.csv" --API_BASE_URL "http://localhost:9080/soavirt/api/v6"
    ```
 3. To log all API calls, add `--DEBUG`:
    ```powershell
-   python test_generator_ccp.py --TEMPLATE_FILE CCPPlan_template_Coke.tst --NEW_FILE CCPPlan.tst --CSV_FILE_PATH "C:\SOATest_CCP_Template.csv" --API_BASE_URL "http://localhost:9080/soavirt/api/v6" --DEBUG
+   python test_generator_ccp.py --TEMPLATE_FILE CCPPlan_template.tst --NEW_FILE CCPPlan_generated.tst --CSV_FILE_PATH "C:\SOATest_CCP_Template.csv" --API_BASE_URL "http://localhost:9080/soavirt/api/v6" --DEBUG
    ```
 4. Monitor the script's output for any errors or status updates.
 
@@ -90,5 +90,6 @@ This Python script automates the creation and configuration of a tst based on a 
 ## Disclaimer
 
 This script is tailored for a specific tst template and may require modifications to work with other tst templates. Use it as a reference or starting point for automating test creation for other use cases.
+
 
 
