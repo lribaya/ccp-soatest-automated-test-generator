@@ -11,12 +11,12 @@ def parse_args():
     )
     parser.add_argument(
         "--TEMPLATE_FILE",
-        default="CCPPlan_template_Coke.tst",
+        default="CCPPlan_template.tst",
         help="Template .tst file name under TestAssets",
     )
     parser.add_argument(
         "--NEW_FILE",
-        default="CCPPlan.tst",
+        default="CCPPlan_generated.tst",
         help="New .tst file name to create under TestAssets",
     )
     parser.add_argument(
@@ -216,3 +216,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
