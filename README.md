@@ -17,7 +17,7 @@ This Python script automates the creation and configuration of a tst based on a 
    ```
 3. Install required libraries:
    ```powershell
-   python -m pip install requests
+   python -m pip install requests json csv
    ```
 
 1. **Python Libraries**:
@@ -90,3 +90,4 @@ This Python script automates the creation and configuration of a tst based on a 
 ## Disclaimer
 
 This script is tailored for a specific tst template and may require modifications to work with other tst templates. Use it as a reference or starting point for automating test creation for other use cases.
+
