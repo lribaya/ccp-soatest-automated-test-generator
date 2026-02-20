@@ -20,16 +20,14 @@ def parse_args():
         help="New .tst file name to create under TestAssets",
     )
     parser.add_argument(
-        "--CSV_FILE_PATH",
-        default=(
-            r"C:\SOATest_CCP_Template.csv"
-        ),
-        help="Full path to the CSV input file",
+            "--CSV_FILE_PATH",
+            required=True,
+            help="Full path to the CSV input file",
     )
     parser.add_argument(
         "--API_BASE_URL",
         default="http://localhost:9080/soavirt/api/v6",
-        help="Base URL for the SOA Virtualize API",
+        help="Base URL for the SOAtest API",
     )
     parser.add_argument(
         "--DEBUG",
