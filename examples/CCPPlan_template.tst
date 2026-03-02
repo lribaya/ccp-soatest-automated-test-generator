@@ -14,6 +14,53 @@ suite:
       name: EnvironmentVariables_Plan
       active: true
   lastModifiedBy: lribaya
+  authentications:
+  - $type: OAuth2Authentication
+    name: CCP_Plan
+    dataSourceNames:
+    - CCPDB_Global
+    config:
+      codeVerifier:
+        values:
+        - $type: AutomaticValue
+        - $type: ScriptedValue
+        fixedValue:
+          $type: StringTestValue
+        selectedIndex: 0
+      loginSuite: true
+      loginSuiteObj:
+        path: ..\..\..\..\..\Program Files\Parasoft\SOAtest & Virtualize\2025.3\CCPAuthTest3.tst
+      redirectURI:
+        values:
+        - $type: OAuth2CallBackURLValue
+        - $type: ScriptedValue
+        fixedValue:
+          $type: StringTestValue
+        selectedIndex: 0
+      tokenURI:
+        values:
+        - $type: ScriptedValue
+        fixedValue:
+          $type: StringTestValue
+          tokenURI: https://login.microsoftonline.com/a7ecaa8d-4880-4bcd-8c42-7d53d21b35bb/oauth2/v2.0/token
+      clientID:
+        values:
+        - $type: ScriptedValue
+        fixedValue:
+          $type: StringTestValue
+          clientID: cc3864e4-91e5-4b78-a107-b3f35e7f31e0
+      clientSecret:
+        values:
+        - $type: ScriptedValue
+        fixedValue:
+          $type: PasswordTestValue
+          password: AwAAAFgrWHFnRmx1THJQODNnVjgrVk1HV1luLzZaNjlUWFI5NHN2c0pHNWhvejA3cmw4L01DNEdtZXdHcUtsSnFGZ2dXa21qc0tZMUlXM0RWZkE1RnI1RzVJdz09
+      scope:
+        values:
+        - $type: ScriptedValue
+        fixedValue:
+          $type: StringTestValue
+          scope: https://CokeConsolidated.onmicrosoft.com/cc3864e4-91e5-4b78-a107-b3f35e7f31e0/user_impersonation
   performance:
     groups:
     - name: /accounts - GET
