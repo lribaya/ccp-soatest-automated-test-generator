@@ -13,22 +13,53 @@ suite:
         value: 52da1f0f69bd417b833e7d905a2ae6bd
       name: EnvironmentVariables_Plan
       active: true
-    - variables:
-      - name: subscriptionKey
-        value: 52da1f0f69bd417b833e7d905a2ae6bd
-      name: EnvironmentVariables_Plan 2
-    - variables:
-      - name: subscriptionKey
-        value: 52da1f0f69bd417b833e7d905a2ae6bd
-      name: EnvironmentVariables_Plan 3
-    - variables:
-      - name: subscriptionKey
-        value: 52da1f0f69bd417b833e7d905a2ae6bd
-      name: EnvironmentVariables_Plan 4
-    - variables:
-      - name: subscriptionKey
-        value: 52da1f0f69bd417b833e7d905a2ae6bd
-      name: EnvironmentVariables_Plan 5
+  authentications:
+  - $type: OAuth2Authentication
+    name: CCP_Plan
+    dataSourceNames:
+    - CCPDB_Global
+    config:
+      codeVerifier:
+        values:
+        - $type: AutomaticValue
+        - $type: ScriptedValue
+        fixedValue:
+          $type: StringTestValue
+        selectedIndex: 0
+      loginSuite: true
+      loginSuiteObj:
+        path: ..\..\..\..\..\Program Files\Parasoft\SOAtest & Virtualize\2025.3\CCPAuthTest3.tst
+      redirectURI:
+        values:
+        - $type: OAuth2CallBackURLValue
+        - $type: ScriptedValue
+        fixedValue:
+          $type: StringTestValue
+        selectedIndex: 0
+      tokenURI:
+        values:
+        - $type: ScriptedValue
+        fixedValue:
+          $type: StringTestValue
+          tokenURI: https://login.microsoftonline.com/a7ecaa8d-4880-4bcd-8c42-7d53d21b35bb/oauth2/v2.0/token
+      clientID:
+        values:
+        - $type: ScriptedValue
+        fixedValue:
+          $type: StringTestValue
+          clientID: cc3864e4-91e5-4b78-a107-b3f35e7f31e0
+      clientSecret:
+        values:
+        - $type: ScriptedValue
+        fixedValue:
+          $type: PasswordTestValue
+          password: AwAAAFgrWHFnRmx1THJQODNnVjgrVk1HV1luLzZaNjlUWFI5NHN2c0pHNWhvejA3cmw4L01DNEdtZXdHcUtsSnFGZ2dXa21qc0tZMUlXM0RWZkE1RnI1RzVJdz09
+      scope:
+        values:
+        - $type: ScriptedValue
+        fixedValue:
+          $type: StringTestValue
+          scope: https://CokeConsolidated.onmicrosoft.com/cc3864e4-91e5-4b78-a107-b3f35e7f31e0/user_impersonation
   lastModifiedBy: anonymous
   runConcurrently: true
   tests:
@@ -419,7 +450,7 @@ suite:
                 common:
                   auth:
                     useDefault: false
-                    customType: 1
+                    authName: Basic
                   method:
                     values:
                     - $type: ScriptedValue
@@ -1060,7 +1091,7 @@ suite:
                 common:
                   auth:
                     useDefault: false
-                    customType: 1
+                    authName: Basic 2
                   method:
                     values:
                     - $type: ScriptedValue
@@ -1306,7 +1337,7 @@ suite:
               common:
                 auth:
                   useDefault: false
-                  customType: 1
+                  authName: Basic 3
                 method:
                   values:
                   - $type: ScriptedValue
@@ -1811,7 +1842,7 @@ suite:
               common:
                 auth:
                   useDefault: false
-                  customType: 1
+                  authName: Basic 4
                 method:
                   values:
                   - $type: ScriptedValue
@@ -2056,7 +2087,7 @@ suite:
               common:
                 auth:
                   useDefault: false
-                  customType: 1
+                  authName: Basic 5
                 method:
                   values:
                   - $type: ScriptedValue
@@ -2560,7 +2591,7 @@ suite:
                 common:
                   auth:
                     useDefault: false
-                    customType: 1
+                    authName: Basic 6
                   method:
                     values:
                     - $type: ScriptedValue
@@ -3178,7 +3209,7 @@ suite:
                 common:
                   auth:
                     useDefault: false
-                    customType: 1
+                    authName: Basic 7
                   method:
                     values:
                     - $type: ScriptedValue
@@ -3424,7 +3455,7 @@ suite:
               common:
                 auth:
                   useDefault: false
-                  customType: 1
+                  authName: Basic 8
                 method:
                   values:
                   - $type: ScriptedValue
@@ -3929,7 +3960,7 @@ suite:
               common:
                 auth:
                   useDefault: false
-                  customType: 1
+                  authName: Basic 9
                 method:
                   values:
                   - $type: ScriptedValue
@@ -4174,7 +4205,7 @@ suite:
               common:
                 auth:
                   useDefault: false
-                  customType: 1
+                  authName: Basic 10
                 method:
                   values:
                   - $type: ScriptedValue
@@ -4678,7 +4709,7 @@ suite:
                 common:
                   auth:
                     useDefault: false
-                    customType: 1
+                    authName: Basic 11
                   method:
                     values:
                     - $type: ScriptedValue
@@ -5297,7 +5328,7 @@ suite:
                 common:
                   auth:
                     useDefault: false
-                    customType: 1
+                    authName: Basic 12
                   method:
                     values:
                     - $type: ScriptedValue
@@ -5543,7 +5574,7 @@ suite:
               common:
                 auth:
                   useDefault: false
-                  customType: 1
+                  authName: Basic 13
                 method:
                   values:
                   - $type: ScriptedValue
@@ -6048,7 +6079,7 @@ suite:
               common:
                 auth:
                   useDefault: false
-                  customType: 1
+                  authName: Basic 14
                 method:
                   values:
                   - $type: ScriptedValue
@@ -6293,7 +6324,7 @@ suite:
               common:
                 auth:
                   useDefault: false
-                  customType: 1
+                  authName: Basic 15
                 method:
                   values:
                   - $type: ScriptedValue
@@ -6797,7 +6828,7 @@ suite:
                 common:
                   auth:
                     useDefault: false
-                    customType: 1
+                    authName: Basic 16
                   method:
                     values:
                     - $type: ScriptedValue
@@ -7416,7 +7447,7 @@ suite:
                 common:
                   auth:
                     useDefault: false
-                    customType: 1
+                    authName: Basic 17
                   method:
                     values:
                     - $type: ScriptedValue
@@ -7662,7 +7693,7 @@ suite:
               common:
                 auth:
                   useDefault: false
-                  customType: 1
+                  authName: Basic 18
                 method:
                   values:
                   - $type: ScriptedValue
@@ -8167,7 +8198,7 @@ suite:
               common:
                 auth:
                   useDefault: false
-                  customType: 1
+                  authName: Basic 19
                 method:
                   values:
                   - $type: ScriptedValue
@@ -8412,7 +8443,7 @@ suite:
               common:
                 auth:
                   useDefault: false
-                  customType: 1
+                  authName: Basic 20
                 method:
                   values:
                   - $type: ScriptedValue
@@ -8916,7 +8947,7 @@ suite:
                 common:
                   auth:
                     useDefault: false
-                    customType: 1
+                    authName: Basic 21
                   method:
                     values:
                     - $type: ScriptedValue
@@ -9545,7 +9576,7 @@ suite:
                 common:
                   auth:
                     useDefault: false
-                    customType: 1
+                    authName: Basic 22
                   method:
                     values:
                     - $type: ScriptedValue
@@ -9791,7 +9822,7 @@ suite:
               common:
                 auth:
                   useDefault: false
-                  customType: 1
+                  authName: Basic 23
                 method:
                   values:
                   - $type: ScriptedValue
@@ -10296,7 +10327,7 @@ suite:
               common:
                 auth:
                   useDefault: false
-                  customType: 1
+                  authName: Basic 24
                 method:
                   values:
                   - $type: ScriptedValue
@@ -10541,7 +10572,7 @@ suite:
               common:
                 auth:
                   useDefault: false
-                  customType: 1
+                  authName: Basic 25
                 method:
                   values:
                   - $type: ScriptedValue
