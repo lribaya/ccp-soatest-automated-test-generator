@@ -1,6 +1,7 @@
 import argparse
 import csv
 import json
+import os
 import traceback
 import requests
 from urllib.parse import quote
@@ -16,18 +17,13 @@ def parse_args():
         help="Template .tst file name under TestAssets",
     )
     parser.add_argument(
-        "--NEW_FILE",
-        default="CCPPlan_generated.tst",
-        help="New .tst file name to create under TestAssets",
-    )
-    parser.add_argument(
             "--CSV_FILE_PATH",
             required=True,
             help="Full path to the CSV input file",
     )
     parser.add_argument(
         "--GENERATED_TST_PATH",
-        default=None,
+        required=True,
         help="Full path to the generated .tst file for post-processing",
     )
     parser.add_argument(
@@ -79,72 +75,64 @@ def remove_ranges(lines, ranges):
     return lines
 
 
-def collapse_environments(lines, debug):
-    env_blocks = []
-    for i, line in enumerate(lines):
-        if line.strip() == "environments:":
-            end = find_block_end_for_key(lines, i)
-            has_active = any("active: true" in lines[j] for j in range(i, end))
-            env_blocks.append((i, end, has_active))
+def remove_duplicate_environments(lines, debug):
+    remove = []
+    i = 0
+    while i < len(lines):
+        if lines[i].strip() != "suite:":
+            i += 1
+            continue
 
-    if not env_blocks:
-        return lines
-
-    keep_idx = None
-    for idx, (_, _, has_active) in enumerate(env_blocks):
-        if has_active:
-            keep_idx = idx
-            break
-    if keep_idx is None:
-        keep_idx = 0
-
-    keep_start, keep_end, _ = env_blocks[keep_idx]
-    env_indent = count_indent(lines[keep_start])
-
-    min_item_indent = None
-    for i in range(keep_start + 1, keep_end):
-        line = lines[i]
-        if line.lstrip().startswith("-"):
-            indent = count_indent(line)
-            if min_item_indent is None or indent < min_item_indent:
-                min_item_indent = indent
-
-    item_starts = []
-    if min_item_indent is not None:
-        for i in range(keep_start + 1, keep_end):
-            line = lines[i]
-            if line.lstrip().startswith("-") and count_indent(line) == min_item_indent:
-                item_starts.append(i)
-
-    if item_starts:
-        keep_item_start = None
-        for start in item_starts:
-            end = find_block_end_for_list_item(lines, start)
-            if any("active: true" in lines[j] for j in range(start, end)):
-                keep_item_start = start
-                break
-        if keep_item_start is None:
-            keep_item_start = item_starts[0]
-
-        remove = []
-        for start in item_starts:
-            if start == keep_item_start:
+        suite_end = find_block_end_for_key(lines, i)
+        j = i + 1
+        while j < suite_end:
+            if lines[j].strip() != "environmentConfig:":
+                j += 1
                 continue
-            end = find_block_end_for_list_item(lines, start)
-            remove.append((start, end))
-        if remove and debug:
-            print(f"Removing {len(remove)} extra environment item(s)")
-        lines = remove_ranges(lines, remove)
 
-        keep_end = find_block_end_for_key(lines, keep_start)
+            env_cfg_end = find_block_end_for_key(lines, j)
+            k = j + 1
+            while k < env_cfg_end:
+                if lines[k].strip() != "environments:":
+                    k += 1
+                    continue
 
-    remove = [
-        (start, end)
-        for idx, (start, end, _) in enumerate(env_blocks)
-        if idx != keep_idx
-    ]
+                env_end = find_block_end_for_key(lines, k)
+                item_starts = []
+                env_indent = count_indent(lines[k])
+                for m in range(k + 1, env_end):
+                    if lines[m].lstrip().startswith("-") and count_indent(lines[m]) == env_indent:
+                        item_starts.append(m)
+
+                if not item_starts:
+                    k = env_end
+                    continue
+
+                item_ranges = []
+                for start in item_starts:
+                    end = find_block_end_for_list_item(lines, start)
+                    if end > env_end:
+                        end = env_end
+                    item_ranges.append((start, end))
+
+                keep_idx = None
+                for idx, (start, end) in enumerate(item_ranges):
+                    if any("active: true" in lines[n] for n in range(start, end)):
+                        keep_idx = idx
+                        break
+                if keep_idx is None:
+                    keep_idx = 0
+
+                for idx, (start, end) in enumerate(item_ranges):
+                    if idx != keep_idx:
+                        remove.append((start, end))
+
+                k = env_end
+            j = env_cfg_end
+        i = suite_end
+
     if remove and debug:
-        print(f"Removing {len(remove)} duplicate environments block(s)")
+        print(f"Removing {len(remove)} duplicate environment item(s)")
     return remove_ranges(lines, remove)
 
 
@@ -250,7 +238,7 @@ def post_process_tst(tst_path, debug):
     with open(tst_path, "r", encoding="utf-8") as tst_file:
         lines = tst_file.readlines()
 
-    lines = collapse_environments(lines, debug)
+    lines = remove_duplicate_environments(lines, debug)
     lines, oauth_block = extract_and_remove_oauth(lines, debug)
     lines = remove_top_level_authentications(lines, debug)
     lines = remove_empty_authentications(lines, debug)
@@ -310,7 +298,7 @@ def main():
     args = parse_args()
 
     template_file = args.TEMPLATE_FILE
-    new_file = args.NEW_FILE
+    new_file = os.path.basename(args.GENERATED_TST_PATH)
     csv_file_path = args.CSV_FILE_PATH
     api_base_url = args.API_BASE_URL
 
@@ -462,4 +450,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
