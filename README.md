@@ -74,13 +74,13 @@ python -m pip install requests
 2. Run the script (PowerShell example):
 
 ```powershell
-python "test_generator_ccp - modifies yaml but unable to remove env.py" --CSV_FILE_PATH "C:\SOATest_CCP_Template.csv" --GENERATED_TST_PATH "C:\TestAssets\CCPPlan_generated.tst"
+python "test_generator_ccp.py" --CSV_FILE_PATH "C:\SOATest_CCP_Template.csv" --GENERATED_TST_PATH "C:\TestAssets\CCPPlan_generated.tst"
 ```
 
 3. To log all API calls, add `--DEBUG`:
 
 ```powershell
-python "test_generator_ccp - modifies yaml but unable to remove env.py" --CSV_FILE_PATH "C:\SOATest_CCP_Template.csv" --GENERATED_TST_PATH "C:\TestAssets\CCPPlan_generated.tst" --DEBUG
+python "test_generator_ccp.py" --CSV_FILE_PATH "C:\SOATest_CCP_Template.csv" --GENERATED_TST_PATH "C:\TestAssets\CCPPlan_generated.tst" --DEBUG
 ```
 
 ## Notes
@@ -92,3 +92,4 @@ python "test_generator_ccp - modifies yaml but unable to remove env.py" --CSV_FI
 ## Disclaimer
 
 This script is tailored for a specific `.tst` template and may require modifications to work with other templates. 
+
